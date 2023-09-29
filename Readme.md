@@ -31,7 +31,7 @@ Siga estas etapas para instalar e configurar o projeto:
 ```bash
 $ git clone https://github.com/All3yp/Chronomits.git
 $ cd Chronomits
-$  python3 chronomits.py caminho/local/do/repo numero_de_commits       
+$ python3 chronomits.py caminho/local/do/repo numero_de_commits       
 ```
 
 ## Licença
