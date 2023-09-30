@@ -1,4 +1,7 @@
 # Byte-compiled / optimized / DLL files
+# file: ~/.gitignore_global
+.DS_Store
+.idea
 __pycache__/
 *.py[cod]
 *$py.class
