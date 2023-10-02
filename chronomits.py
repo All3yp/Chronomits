@@ -7,7 +7,7 @@ import os
 class Chronomits:
     def __init__(self, repositorio_local, numero_de_commits):
         self.repositorio_local = repositorio_local
-        self.numero_de_commits = numero_de_commits
+        self.numero_de_commits = int(numero_de_commits)
 
     def obter_caminho_do_banner(self):
         script_directory = os.path.dirname(os.path.abspath(__file__))
@@ -29,24 +29,30 @@ class Chronomits:
             print(f"O diretório {self.repositorio_local} não existe.")
             sys.exit(1)
 
-    def converte_numero_commits(self):
+    def converte_numero_commits(self, numero_de_commits): # funcao sem teste unitário, sempre dá erro e sem possibilidade de mock
         try:
-            self.numero_de_commits = int(sys.argv[2])
+            return int(numero_de_commits)
         except ValueError:
             print("O número de commits deve ser um valor inteiro.")
             sys.exit(1)
+            return 0
 
     def exibe_banner(self):
         banner_path = self.obter_caminho_do_banner()
         if banner_path:
-            # subprocess.call(["clear"]) # testar isso direito dps
-            subprocess.call(["chmod", "+x", banner_path])
-            subprocess.call([banner_path])
+            try:
+                subprocess.call(["chmod", "+x", banner_path])
+                subprocess.call([banner_path])
+                return True
+            except Exception as e:
+                print(f"Erro ao exibir o banner: {e}")
+                return False
+        return False
 
     def cria_commits(self):
         os.chdir(self.repositorio_local)
 
-        if not os.path.exists('README.md'):
+        if not os.path.exists('README.md' ):
             with open('README.md', 'w') as readme:
                 readme.write('Arquivo README\n\nEste é o conteúdo inicial do README.')
 
@@ -75,5 +81,5 @@ if __name__ == "__main__":
     script = Chronomits(repositorio_local, numero_de_commits)
     script.verifica_argumentos()
     script.verifica_existencia_repositorio()
-    script.converte_numero_commits()
+    script.converte_numero_commits(sys.argv[2])
     script.cria_commits()
