@@ -1,4 +1,6 @@
-# Chronomits
+# Chronomits 
+
+![build](https://github.com/All3yp/Chronomits/workflows/build/badge.svg)
 
 "Este projeto chegou para dar aquele up no seu GitHub, mesmo que a quantidade de commits não conte toda a história... 🤭"
 
