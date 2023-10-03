@@ -59,5 +59,20 @@ class TestChronomits(unittest.TestCase):
 
             self.assertEqual(context.exception.code, 1)  # Verifica se o código de saída é 1
 
+    def test_deve_criar_readme_e_gerar_commits(self):
+        # given
+        self.chronomit_mock.file_readme = "/caminho/foi/criado/README.md"
+
+        with patch('os.path.exists', return_value=False), \
+                patch('builtins.open', mock.mock_open()), \
+                patch('os.chdir'), \
+                patch('subprocess.call') as mock_subprocess:
+
+            # When
+            self.chronomit_mock.cria_commits()
+
+            # Then
+            mock_subprocess.assert_any_call(['git', 'add', 'README.md'])
+
 if __name__ == '__main__':
     unittest.main()

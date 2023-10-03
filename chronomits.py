@@ -52,7 +52,7 @@ class Chronomits:
     def cria_commits(self):
         os.chdir(self.repositorio_local)
 
-        if not os.path.exists('README.md' ):
+        if not os.path.exists('README.md'):
             with open('README.md', 'w') as readme:
                 readme.write('Arquivo README\n\nEste é o conteúdo inicial do README.')
 
